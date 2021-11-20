@@ -1,32 +1,46 @@
+require_relative 'node'
+
 class LinkedList
-  attr_reader :list_head
+  attr_reader :head
 
   def initialize
-    @list_head = nil
+    @head = Node.new
   end
 
   def append(value)
+    self.tail.next_node = Node.new(value)
   end
 
   def prepend(value)
+    @head = Node.new(value, next_node = @head)
   end
 
   def size
-  end
-
-  def head
-    @list_head
+    return 0 if head.value == nil
+    count = 1
+    node = @head
+    until node.next_node == nil do
+      node = node.next_node
+      count += 1
+    end
+    count
   end
 
   def tail
-    next_node = self.head.
-    until next_node == nil
+    node = @head
+    node = node.next_node until node.next_node == nil
+    node
   end
 
   def at(index)
   end
 
   def pop
+    tail = self.tail
+    node = @head
+    node = node.next_node until node.next_node == tail
+    node.next_node = nil
+    tail
   end
 
   def contains?(value)
