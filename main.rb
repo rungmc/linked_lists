@@ -20,3 +20,16 @@ list.append('Do I exist?')
 puts "How about now? #{list.contains?('Do I exist?')}"
 puts "What is the index of 'This is the initial head element'? #{list.find('This is the initial head element')}"
 puts list.to_s
+
+puts "\nThis is a new, random linked list with 9 elements:"
+list = LinkedList.new(Node.new(rand(100)))
+8.times { list.append(rand(100)) }
+puts list.to_s
+
+puts "5th element removed:"
+list.remove_at(4)
+puts list.to_s
+
+puts "Inserted element at index of 3:"
+list.insert_at('Hi!', 3)
+puts list.to_s

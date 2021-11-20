@@ -83,8 +83,11 @@ class LinkedList
   end
 
   def insert_at(value, index)
+    node = Node.new(value, next_node = self.at(index))
+    self.at(index - 1).next_node = node
   end
 
   def remove_at(index)
+    self.at(index - 1).next_node = self.at(index + 1)
   end
 end
