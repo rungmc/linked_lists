@@ -3,8 +3,8 @@ require_relative 'node'
 class LinkedList
   attr_reader :head
 
-  def initialize
-    @head = Node.new
+  def initialize(node = Node.new)
+    @head = node
   end
 
   def append(value)
@@ -16,7 +16,7 @@ class LinkedList
   end
 
   def size
-    return 0 if head.value == nil
+    return 0 if @head.value == nil
     count = 1
     node = @head
     until node.next_node == nil do
@@ -33,6 +33,13 @@ class LinkedList
   end
 
   def at(index)
+    node = @head
+    while index > 0 do
+      return puts "Error: no item at that index." if node.next_node == nil
+      node = node.next_node
+      index -= 1
+    end
+    node
   end
 
   def pop
@@ -44,12 +51,34 @@ class LinkedList
   end
 
   def contains?(value)
+    node = @head
+    until node.next_node == nil do
+      return true if node.value == value
+      node = node.next_node
+    end
+    false
   end
 
-  def find?(value)
+  def find(value)
+    return nil unless self.contains?(value)
+    index = 0
+    node = @head
+    until node.value == value do
+      node = node.next_node
+      index += 1
+    end
+    index
   end
 
   def to_s
+    node = @head
+    list = "( #{node.value} ) -> "
+    until node.next_node == nil do
+      node = node.next_node
+      list += "( #{node.value} ) -> "
+    end
+    list += "nil"
+    list
   end
 
   def insert_at(value, index)
