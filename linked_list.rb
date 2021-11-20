@@ -56,6 +56,7 @@ class LinkedList
       return true if node.value == value
       node = node.next_node
     end
+    return true if node.value == value
     false
   end
 
@@ -84,6 +85,6 @@ class LinkedList
   def insert_at(value, index)
   end
 
-  def remove_at(value, index)
+  def remove_at(index)
   end
 end
